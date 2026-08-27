@@ -3,9 +3,7 @@
 import React from "react";
 import { z } from "zod";
 import { useForm } from "@/hooks/useForm";
-import { useOffline } from "@/components/offline/OfflineProvider";
 import { Budget } from "@/lib/api/client";
-import { Progress } from "@/components/ui/progress";
 
 const budgetSchema = z
   .object({
@@ -40,9 +38,6 @@ interface BudgetFormProps {
     initialData?: Budget | null;
     isEditing?: boolean;
     budgetCount?: number;
-}
-
-export default function BudgetForm({ onSubmit, onCancel, initialData, isEditing = false, budgetCount = 0 }: BudgetFormProps) {
     spent?: number;
 }
 
@@ -65,7 +60,6 @@ function getProgressTextColor(percentage: number): string {
 }
 
 export default function BudgetForm({ onSubmit, onCancel, initialData, isEditing = false, spent = 0 }: BudgetFormProps) {
-    const { isOnline: _isOnline, queueAction: _queueAction } = useOffline();
     
     // Calculate default end date once per component mount
     const [defaultEndDate] = React.useState(() => {
@@ -76,7 +70,6 @@ export default function BudgetForm({ onSubmit, onCancel, initialData, isEditing 
         register,
         handleSubmit,
         formState: { errors, isValid, isSubmitting },
-        reset: _reset,
     } = useForm<BudgetFormData>({
         schema: budgetSchema,
         defaultValues: {
