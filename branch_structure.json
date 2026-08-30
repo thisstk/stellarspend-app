@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "fix/analytics-rename-export-125",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "fix/analytics-rename-export-125": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "fix/analytics-rename-export-125",
+    "origin"
+  ]
+}
